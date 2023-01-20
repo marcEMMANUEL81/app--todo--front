@@ -60,6 +60,7 @@ export default {
       message: '',
       choose: '',
       list: [],
+      API_BASE_URL: process.env.VUE_APP_API_URL
     }
   },
 
@@ -79,7 +80,7 @@ export default {
     },
 
     deleteTodoElement(id) {
-      const _url = process.env.VUE_APP_API_URL + '/api/todo/delete/' + id;
+      const _url = this.API_BASE_URL + '/api/todo/delete/' + id;
       fetch(_url, { 
         method: 'DELETE',
       })
@@ -89,7 +90,7 @@ export default {
     },
 
     createATodo() {
-      const _url = process.env.VUE_APP_API_URL + '/api/todo/register';
+      const _url = this.API_BASE_URL + '/api/todo/register';
       const _data = {
         text: this.inputValue,
         status: this.selected,
@@ -105,7 +106,7 @@ export default {
     },
 
     async getList() {
-      const _url = process.env.VUE_APP_API_URL + '/api/todo/add';
+      const _url = this.API_BASE_URL + '/api/todo/add';
       const res = await fetch(_url)
         .then((response) => response.json())
         .catch((error) => console.log(error))
